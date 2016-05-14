@@ -1,3 +1,4 @@
+require "rainbow"
 class GameBoard
 	attr_accessor :player_1, :player_2, :game_over
 	
@@ -23,11 +24,11 @@ class GameBoard
 
 	def print_board
 		system "clear"
-		puts " #{@game_array[0]} | #{@game_array[1]} | #{@game_array[2]} "
-		puts "---+---+---"
-		puts " #{@game_array[3]} | #{@game_array[4]} | #{@game_array[5]} "
-		puts "---+---+---"
-		puts " #{@game_array[6]} | #{@game_array[7]} | #{@game_array[8]} "
+		puts " #{@game_array[0]} " + Rainbow("|").white + " #{@game_array[1]} " + Rainbow("|").white + " #{@game_array[2]} "
+		puts Rainbow("---+---+---").white
+		puts " #{@game_array[3]} " + Rainbow("|").white + " #{@game_array[4]} " + Rainbow("|").white + " #{@game_array[5]} "
+		puts Rainbow("---+---+---").white
+		puts " #{@game_array[6]} " + Rainbow("|").white + " #{@game_array[7]} " + Rainbow("|").white + " #{@game_array[8]} "
 	end
 
 	def help
@@ -76,10 +77,10 @@ class GameBoard
 		if @game_array.select.include?(" ")
 			@solution_array.each do |sol|
 				if @game_array[sol[0]] == "X" && @game_array[sol[1]] == "X" && @game_array[sol[2]] == "X"
-					puts "#{@player_1.name.upcase} WINS... #{@player_2.name.upcase} is a LOSER"
+					puts Rainbow("#{@player_1.name.upcase} WINS...").red + " #{@player_2.name.upcase} is a LOSER"
 					@game_over = true
 				elsif @game_array[sol[0]] == "O" && @game_array[sol[1]] == "O" && @game_array[sol[2]] == "O"
-					puts "#{@player_2.name.upcase} WINS... #{@player_1.name.upcase} is a LOSER"
+					puts Rainbow("#{@player_2.name.upcase} WINS...").red + " #{@player_1.name.upcase} is a LOSER"
 					@game_over = true
 				end
 			end
