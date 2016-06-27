@@ -22,8 +22,3 @@ until game.game_over? do
 end
 
 puts "game over"
-
-# puts "#{@player_1.name.upcase} WINS..." + " #{@player_2.name.upcase} is a LOSER"
-# puts "#{@player_2.name.upcase} WINS..." + " #{@player_1.name.upcase} is a LOSER"
-#
-# puts "It's a draw!"
