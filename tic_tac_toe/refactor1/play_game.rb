@@ -12,13 +12,20 @@ player = game.player_1
 until game.game_over? do
   game.print_board
   puts "#{player.name}, please enter your play."
-  computer_reply = game.check_response(gets.chomp,player)
-  if computer_reply
-    puts computer_reply
+  user_play = gets.chomp
+  if game.check_response(user_play)[:validity]
+    game.enter_play(player: player,square: user_play)
+  else
+    puts game.check_response(user_play)[:msg]
     redo
   end
-	break if game.game_over?
   player == game.player_1 ? player = game.player_2 : player = game.player_1
 end
 
+game.print_board
 puts "game over"
+if game.winner
+  puts "#{game.winner.name} is the winner!"
+else
+  puts "it seems to be a tie...."
+end
